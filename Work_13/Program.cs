@@ -13,7 +13,7 @@ while (number >= 1)
 // Console.WriteLine($"Длина числа составляет: {length}");
 
 if (length < 3)
-    Console.WriteLine($"Нет ретьей цифры нет. Длина числа составляет: {length} ");
+    Console.WriteLine($"Нет третьей цифры нет. Длина числа составляет: {length} ");
 
 int multiplier = 1;
 for (int i = 1 ; i < length-2 ; i++)
