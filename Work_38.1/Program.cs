@@ -15,39 +15,39 @@
 //  рассчитывать на четверку и «NO» в противном случае. В каждой строчке числа следует выводить 
 // в том же порядке, в котором они идут во входных данных. При выводе числа отделяются пробелом.
 
-void InputArray(int[] array)
-{
-    for (int i = 0; i < array.Length; i++)
-        array[i] = new Random().Next(1, 32); // [1, 31]
-}
+// 5
+// 4 16 19 31 2
 
-void OutputArray(int[] array)
-{
-    int[] chetarray = new int[n];
-    for (int i = 0; i < array.Length; i++)
-        if (array[i] % 2 == 0)
-        chetarray [i] = 
+// 8
+// 29 4 7 12 15 17 24 1
 
-}
-
-// int ReleaseArray(int[] array)
-// {
-//     int MaxNumber = 0;
-//     int MinNumber = array[0];
-//     for (int i = 0; i < array.Length; i++)
-//     {
-//         if (array[i] > MaxNumber)
-//             MaxNumber = array[i];
-//         else if (array[i] <= MinNumber)
-//             MinNumber = array[i];
-//     }
-//     int sum = MaxNumber - MinNumber;
-//     return sum;
-// }
 Console.Clear();
-Console.WriteLine("Введите кол-во элементов массива: ");
+Console.WriteLine("Введите количество дней: ");
 int n = Convert.ToInt32(Console.ReadLine());
-int[] array = new int[n];
-InputArray(array);
-Console.WriteLine($"Массив: [{string.Join(", ", array)}]");
-// Console.WriteLine($"Разница между Max и Min элемнтом массива составляет {ReleaseArray(array)}");
+Console.WriteLine("Введите через пробел дни месяца когда были оценки: ");
+int[] numbers = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
+ 
+int countEven = 0, countOdd = 0;
+foreach (int element in numbers)
+{
+    if (element % 2 == 1)
+    {
+        Console.Write($"{element} ");
+        countEven++;
+    }
+}
+Console.WriteLine();
+foreach (int element in numbers)
+{
+    if (element % 2 == 0)
+    {
+        Console.Write($"{element} ");
+        countOdd++;
+    }
+}
+Console.WriteLine();
+
+if (countOdd >= countEven)
+    Console.WriteLine("YES");
+else
+    Console.WriteLine("NO");
