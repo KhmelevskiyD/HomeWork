@@ -19,13 +19,3 @@ int PrintNumbers(int start, int end)
 }
 
 
-
-
-
-
-// int SumNumbers(int numbers)
-// {
-//     if (numbers == 0)
-//         return 0;
-//     return (numbers % 10 + SumNumbers(numbers / 10));
-// }
