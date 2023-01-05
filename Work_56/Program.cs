@@ -8,12 +8,64 @@
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с 
 // наименьшей суммой элементов: 1 строка
 
+
+// void InputMatrix(int[,] matrix)
+// {
+//     for (int i = 0; i < matrix.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < matrix.GetLength(1); j++)
+//             matrix[i, j] = new Random().Next(1, 10); // [1, 9]
+//     }
+// }
+
+// void PrintMatrix(int[,] matrix)
+// {
+//     for (int i = 0; i < matrix.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < matrix.GetLength(1); j++)
+//             Console.Write($"{matrix[i, j]} \t");
+//         Console.WriteLine();
+//     }
+// }
+
+// void MaxLineMatrix(int[,] matrix)
+// {
+//     int maxSumNumberLine = 0;
+//     int maxSum = 0;
+//     for (int i = 0; i < matrix.GetLength(0); i++)
+//     {
+//         int sum = 0;
+//         for (int j = 0; j < matrix.GetLength(1); j++)
+//         {
+//             sum += matrix[i, j];
+//         }
+//         if (sum > maxSum)
+//         {
+//             maxSum = sum;
+//             maxSumNumberLine = i;
+//         }
+//     }
+//     Console.WriteLine();
+//     Console.Write($"Строка с наибольшей суммой элементов: {maxSumNumberLine+1} строка ");
+// }
+
+// Console.Clear();
+// Console.Write("Введите размер матрицы через пробел: ");
+// int[] size = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
+// int[,] matrix = new int[size[0], size[1]];
+// Console.WriteLine("Начальный массив:");
+// InputMatrix(matrix);
+// PrintMatrix(matrix);
+// MaxLineMatrix(matrix);
+
+
+// Решение преподователя
 void InputMatrix(int[,] matrix)
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
-            matrix[i, j] = new Random().Next(1, 10); // [1, 9]
+            matrix[i, j] = new Random().Next(1, 11); // [1, 10]
     }
 }
 
@@ -27,32 +79,36 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
-void MaxLineMatrix(int[,] matrix)
+int ReleaseMatrix(int[,] matrix)
 {
-    int maxSumNumberLine = 0;
-    int maxSum = 0;
-    for (int i = 0; i < matrix.GetLength(0); i++)
+    int minRow = 0;
+    for (int i = 0; i < matrix.GetLength(1); i++)
+        minRow += matrix[0, i];
+
+    for (int i = 1; i < matrix.GetLength(0); i++)
     {
-        int sum = 0;
+        int sumRow = 0;
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            sum += matrix[i, j];
+            sumRow += matrix[i, j];
         }
-        if (sum > maxSum)
-        {
-            maxSum = sum;
-            maxSumNumberLine = i;
-        }
+        if (minRow > sumRow)
+            minRow = sumRow;
     }
-    Console.WriteLine();
-    Console.Write($"Строка с наибольшей суммой элементов: {maxSumNumberLine+1} строка ");
+    return minRow;
 }
 
 Console.Clear();
-Console.Write("Введите размер матрицы через пробел: ");
+Console.Write("Введите размер прямоугольного двумерного массива: ");
 int[] size = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
+while (size[0] == size[1])
+{
+    Console.Write("Вы ошиблись!\nВведите размер прямоугольного двумерного массива: ");
+    size = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
+}
 int[,] matrix = new int[size[0], size[1]];
-Console.WriteLine("Начальный массив:");
 InputMatrix(matrix);
+Console.WriteLine("Начальный двумерный массив: ");
 PrintMatrix(matrix);
-MaxLineMatrix(matrix);
+Console.WriteLine();
+Console.WriteLine($"Результат: {ReleaseMatrix(matrix)}");
